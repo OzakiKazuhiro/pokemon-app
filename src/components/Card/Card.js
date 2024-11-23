@@ -1,7 +1,7 @@
 import React from "react";
 import "./Card.css";
 
-const Card = ({ pokemon }) => {
+const Card = ({ pokemon, pokemonName }) => {
   return (
     <div className="card">
       <h3 className="cardName">{pokemon.name}</h3>

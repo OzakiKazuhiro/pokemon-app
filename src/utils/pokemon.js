@@ -1,4 +1,4 @@
-export const getAllPokemon = (url) => {
+export const getURLtoJson = (url) => {
   return new Promise((resolve, reject) => {
     fetch(url) //通常、この第１段階はオブジェクトで帰って来る
       .then((res) => res.json()) //このオブジェクトをjsonファイルにしている
@@ -11,7 +11,7 @@ export const getPokemon = (url) => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         resolve(data);
       });
   });
