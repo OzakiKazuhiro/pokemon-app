@@ -4,6 +4,115 @@
   height: 100vh;
 }
 
+.gameBoyBody {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  border: 80px solid #d4d4d4;
+  box-sizing: border-box;
+  pointer-events: none; /* 外枠をクリック不可にする */
+}
+
+.gameBoyFrame {
+  position: fixed;
+  top: 10px;
+  left: 5vw;
+  height: 90vh;
+  width: 90vw;
+  border: 80px solid #808080;
+  border-bottom: 60px solid #808080;
+  box-sizing: border-box;
+  border-radius: 20px 20px 70px 20px;
+  pointer-events: none; /* 外枠をクリック不可にする */
+}
+
+.gameBoyFrame__redLine {
+  position: fixed;
+  top: 40px;
+  left: 10vw;
+  height: 10px;
+  width: 80vw;
+  margin: 0 auto;
+  background-color: #7f0200;
+  z-index: 100;
+}
+
+.gameBoyFrame__blueLine {
+  position: fixed;
+  top: 60px;
+  left: 10vw;
+  height: 10px;
+  width: 80vw;
+  margin: 0 auto;
+  background-color: #04007f;
+  z-index: 100;
+}
+
+.gameBoyFrame__message {
+  position: fixed;
+  display: inline-block;
+  top: 37px;
+  left: 38vw;
+  height: 40px;
+  width: 40%;
+  z-index: 100;
+  color: white;
+  background-color: #808080;
+  font-size: 28px;
+}
+
+.gameBoyFrame__batteryLight {
+  position: fixed;
+  display: inline-block;
+  top: 200px;
+  left: 7.5vw;
+  height: 20px;
+  width: 20px;
+  z-index: 100;
+  border-radius: 100%;
+  background-color: #eb3725;
+}
+
+.gameBoyFrame__batteryMessage {
+  position: fixed;
+  display: inline-block;
+  top: 230px;
+  left: 6.5vw;
+  z-index: 100;
+  color: white;
+  background-color: #808080;
+  font-size: 14px;
+}
+
+.gameBoyFrame__nintenbo {
+  position: fixed;
+  display: inline-block;
+  top: 92.5vh;
+  left: 5vw;
+  z-index: 100;
+  color: #484b8f;
+  background-color: #d4d4d4;
+  font-size: 28px;
+  font-weight: 900;
+  border: 4px solid #484b8f;
+  border-radius: 30px;
+  padding: 0px 10px;
+}
+
+.gameBoyFrame__gameGirl {
+  position: fixed;
+  display: inline-block;
+  top: 92.25vh;
+  left: 22vw;
+  z-index: 100;
+  color: #484b8f;
+  background-color: #d4d4d4;
+  font-size: 36px;
+  font-weight: 900;
+}
+
 .pokemonCardContainer {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

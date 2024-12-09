@@ -70,6 +70,19 @@ function App() {
           <h1>ロード中・・・</h1>
         ) : (
           <>
+            <div className="gameBoyBody"></div>
+            <div className="gameBoyFrame__redLine"></div>
+            <div className="gameBoyFrame"></div>
+            <div className="gameBoyFrame__redLine"></div>
+            <div className="gameBoyFrame__blueLine"></div>
+            <div className="gameBoyFrame__message">
+              DOT MATRIX WITH STEREO SOUND
+            </div>
+            <div className="gameBoyFrame__batteryLight"></div>
+            <div className="gameBoyFrame__batteryMessage">Battery</div>
+            <div className="gameBoyFrame__nintenbo">Nintenbo</div>
+            <div className="gameBoyFrame__gameGirl">GAME GIRL</div>
+
             <div className="pokemonCardContainer">
               {pokemonData.map((pokemon, i) => {
                 return (
