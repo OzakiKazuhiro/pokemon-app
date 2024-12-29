@@ -40,75 +40,6 @@ function App() {
     setPokemonData(_pokemonData);
   };
 
-  const loadPokemonGoldSilverRubySapphire = async (data) => {
-    let _pokemonData = await Promise.all(
-      data.slice(11).map((pokemon) => {
-        let pokemonRecord = getPokemon(pokemon.url);
-        return pokemonRecord;
-      })
-    );
-    setPokemonData(_pokemonData);
-  };
-  const loadPokemonDiamondPearl = async (data) => {
-    let _pokemonData = await Promise.all(
-      data.slice(6).map((pokemon) => {
-        let pokemonRecord = getPokemon(pokemon.url);
-        return pokemonRecord;
-      })
-    );
-    setPokemonData(_pokemonData);
-  };
-
-  const loadPokemonBlackWhite = async (data) => {
-    let _pokemonData = await Promise.all(
-      data.slice(14).map((pokemon) => {
-        let pokemonRecord = getPokemon(pokemon.url);
-        return pokemonRecord;
-      })
-    );
-    setPokemonData(_pokemonData);
-  };
-
-  const loadPokemonXYSwordShield = async (data) => {
-    let _pokemonData = await Promise.all(
-      data.slice(9).map((pokemon) => {
-        let pokemonRecord = getPokemon(pokemon.url);
-        return pokemonRecord;
-      })
-    );
-    setPokemonData(_pokemonData);
-  };
-
-  const loadPokemonSunMoon = async (data) => {
-    let _pokemonData = await Promise.all(
-      data.slice(1).map((pokemon) => {
-        let pokemonRecord = getPokemon(pokemon.url);
-        return pokemonRecord;
-      })
-    );
-    setPokemonData(_pokemonData);
-  };
-
-  const loadPokemonArceus = async (data) => {
-    let _pokemonData = await Promise.all(
-      data.slice(18).map((pokemon) => {
-        let pokemonRecord = getPokemon(pokemon.url);
-        return pokemonRecord;
-      })
-    );
-    setPokemonData(_pokemonData);
-  };
-
-  const loadPokemonScarletViolet = async (data) => {
-    let _pokemonData = await Promise.all(
-      data.slice(5).map((pokemon) => {
-        let pokemonRecord = getPokemon(pokemon.url);
-        return pokemonRecord;
-      })
-    );
-    setPokemonData(_pokemonData);
-  };
-
   const handleNextPage = async () => {
     setLoading(true);
     let data = await getURLtoJson(nextURL);
@@ -132,11 +63,11 @@ function App() {
 
   const handleGoldSilverPage = async () => {
     const goldSilverPageUrl =
-      "https://pokeapi.co/api/v2/pokemon?offset=140&limit=20";
+      "https://pokeapi.co/api/v2/pokemon?offset=151&limit=20";
     setLoading(true);
     let data = await getURLtoJson(goldSilverPageUrl);
     console.log(data.previous);
-    await loadPokemonGoldSilverRubySapphire(data.results);
+    await loadPokemon(data.results);
     setNextURL(data.next);
     setPrevURL(data.previous);
     setLoading(false);
@@ -144,11 +75,11 @@ function App() {
 
   const handleRubySapphirePage = async () => {
     const RubySapphireUrl =
-      "https://pokeapi.co/api/v2/pokemon?offset=240&limit=20";
+      "https://pokeapi.co/api/v2/pokemon?offset=251&limit=20";
     setLoading(true);
     let data = await getURLtoJson(RubySapphireUrl);
     console.log(data.previous);
-    await loadPokemonGoldSilverRubySapphire(data.results);
+    await loadPokemon(data.results);
     setNextURL(data.next);
     setPrevURL(data.previous);
     setLoading(false);
@@ -156,11 +87,11 @@ function App() {
 
   const handleDiamondPearl = async () => {
     const DiamondPealUrl =
-      "https://pokeapi.co/api/v2/pokemon?offset=380&limit=20";
+      "https://pokeapi.co/api/v2/pokemon?offset=386&limit=20";
     setLoading(true);
     let data = await getURLtoJson(DiamondPealUrl);
     console.log(data.previous);
-    await loadPokemonDiamondPearl(data.results);
+    await loadPokemon(data.results);
     setNextURL(data.next);
     setPrevURL(data.previous);
     setLoading(false);
@@ -168,11 +99,11 @@ function App() {
 
   const handleBlackWhite = async () => {
     const DiamondPealUrl =
-      "https://pokeapi.co/api/v2/pokemon?offset=480&limit=20";
+      "https://pokeapi.co/api/v2/pokemon?offset=494&limit=20";
     setLoading(true);
     let data = await getURLtoJson(DiamondPealUrl);
     console.log(data.previous);
-    await loadPokemonBlackWhite(data.results);
+    await loadPokemon(data.results);
     setNextURL(data.next);
     setPrevURL(data.previous);
     setLoading(false);
@@ -180,22 +111,22 @@ function App() {
 
   const handleXY = async () => {
     const DiamondPealUrl =
-      "https://pokeapi.co/api/v2/pokemon?offset=640&limit=20";
+      "https://pokeapi.co/api/v2/pokemon?offset=649&limit=20";
     setLoading(true);
     let data = await getURLtoJson(DiamondPealUrl);
     console.log(data.previous);
-    await loadPokemonXYSwordShield(data.results);
+    await loadPokemon(data.results);
     setNextURL(data.next);
     setPrevURL(data.previous);
     setLoading(false);
   };
   const handleSunMoon = async () => {
     const DiamondPealUrl =
-      "https://pokeapi.co/api/v2/pokemon?offset=720&limit=20";
+      "https://pokeapi.co/api/v2/pokemon?offset=721&limit=20";
     setLoading(true);
     let data = await getURLtoJson(DiamondPealUrl);
     console.log(data.previous);
-    await loadPokemonSunMoon(data.results);
+    await loadPokemon(data.results);
     setNextURL(data.next);
     setPrevURL(data.previous);
     setLoading(false);
@@ -203,11 +134,11 @@ function App() {
 
   const handleSwordShield = async () => {
     const DiamondPealUrl =
-      "https://pokeapi.co/api/v2/pokemon?offset=800&limit=20";
+      "https://pokeapi.co/api/v2/pokemon?offset=809&limit=20";
     setLoading(true);
     let data = await getURLtoJson(DiamondPealUrl);
     console.log(data.previous);
-    await loadPokemonXYSwordShield(data.results);
+    await loadPokemon(data.results);
     setNextURL(data.next);
     setPrevURL(data.previous);
     setLoading(false);
@@ -215,11 +146,11 @@ function App() {
 
   const handleArceus = async () => {
     const DiamondPealUrl =
-      "https://pokeapi.co/api/v2/pokemon?offset=880&limit=20";
+      "https://pokeapi.co/api/v2/pokemon?offset=898&limit=20";
     setLoading(true);
     let data = await getURLtoJson(DiamondPealUrl);
     console.log(data.previous);
-    await loadPokemonArceus(data.results);
+    await loadPokemon(data.results);
     setNextURL(data.next);
     setPrevURL(data.previous);
     setLoading(false);
@@ -227,11 +158,23 @@ function App() {
 
   const handleScarletViolet = async () => {
     const DiamondPealUrl =
-      "https://pokeapi.co/api/v2/pokemon?offset=900&limit=20";
+      "https://pokeapi.co/api/v2/pokemon?offset=905&limit=20";
     setLoading(true);
     let data = await getURLtoJson(DiamondPealUrl);
     console.log(data.previous);
-    await loadPokemonScarletViolet(data.results);
+    await loadPokemon(data.results);
+    setNextURL(data.next);
+    setPrevURL(data.previous);
+    setLoading(false);
+  };
+
+  const handleSample = async () => {
+    const DiamondPealUrl =
+      "https://pokeapi.co/api/v2/pokemon?offset=150&limit=1";
+    setLoading(true);
+    let data = await getURLtoJson(DiamondPealUrl);
+    console.log(data.previous);
+    await loadPokemon(data.results);
     setNextURL(data.next);
     setPrevURL(data.previous);
     setLoading(false);
@@ -286,6 +229,7 @@ function App() {
           <button onClick={handleScarletViolet}>
             スカーレット・バイオレット
           </button>
+          <button onClick={handleSample}>実験</button>
         </div>
       </div>
     </>
