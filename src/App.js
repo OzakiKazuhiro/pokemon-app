@@ -7,28 +7,42 @@ import Navbar from "./components/Navbar/Navbar";
 function App() {
   const initialURL = "https://pokeapi.co/api/v2/pokemon";
   //最初の２０匹のデータが入っているURL
-
   const [loading, setLoading] = useState(true);
   const [pokemonData, setPokemonData] = useState([]);
   const [nextURL, setNextURL] = useState("");
   const [prevURL, setPrevURL] = useState("");
   const [pokemonName, setPokemonName] = useState(0);
+  // 検索機能のための新しいstate
+  const [searchTerm, setSearchTerm] = useState("");
+  const [pokemonList, setPokemonList] = useState([]); // JSONデータを保持するstate
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchPokemonData = async () => {
-      //全てのポケモンデータを取得
-      let res = await getURLtoJson(initialURL);
-      console.log(res);
+      try {
+        // PokeAPI データの取得
+        let res = await getURLtoJson(initialURL);
+        loadPokemon(res.results);
+        setNextURL(res.next);
+        setPrevURL(res.previous);
 
-      // console.log(res.next);
-      loadPokemon(res.results);
-      setNextURL(res.next);
-      setPrevURL(res.previous);
-      setLoading(false);
+        // ローカルのJSONデータの取得
+        const response = await fetch("./pokemon_all.json");
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setPokemonList(data);
+      } catch (error) {
+        console.error("Error loading data:", error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
     };
+
     fetchPokemonData();
-    // getPokemonJaName(initialURL);
-  }, []); //←初回時にだけ発火
+  }, []);
 
   const loadPokemon = async (data) => {
     let _pokemonData = await Promise.all(
@@ -38,6 +52,30 @@ function App() {
       })
     );
     setPokemonData(_pokemonData);
+  };
+
+  // 検索機能の実装
+  const handleSearch = async () => {
+    if (!searchTerm) return;
+
+    setLoading(true);
+    // JSONデータから該当するポケモンを検索
+    const foundPokemon = pokemonList.find(
+      (pokemon) =>
+        pokemon.pokeapi_species_name_ja === searchTerm ||
+        pokemon.yakkuncom_name === searchTerm
+    );
+
+    if (foundPokemon) {
+      const offset = foundPokemon.pokeapi_id - 1;
+      const searchURL = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=1`;
+
+      let data = await getURLtoJson(searchURL);
+      await loadPokemon(data.results);
+      setNextURL(data.next);
+      setPrevURL(data.previous);
+    }
+    setLoading(false);
   };
 
   const handleNextPage = async () => {
@@ -184,6 +222,19 @@ function App() {
     <>
       <Navbar />
       <div className="App">
+        <div className="searchContainer">
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="ポケモンの名前を入力"
+            className="searchInput"
+          />
+          <button onClick={handleSearch} className="searchButton">
+            検索
+          </button>
+        </div>
+
         {loading ? (
           <h1>ロード中・・・</h1>
         ) : (
