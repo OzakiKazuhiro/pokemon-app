@@ -144,18 +144,11 @@ const Card = ({ pokemon }) => {
           <p>たかさ：{pokemonHeight} m</p>
         </div>
         <div className="monsterBallFrameContainer">
-          <div className="monsterBallFrame">
-            <div
-              className="monsterBallButton"
-              onClick={() => pokemonCry.play()}
-            >
-              なき声
-            </div>
+          <div className="monsterBallFrame" onClick={() => pokemonCry.play()}>
+            <div className="monsterBallButton">なき声</div>
           </div>
-          <div className="masterBallFrame">
-            <div className="monsterBallButton" onClick={togglePokemonColor}>
-              色ちがい
-            </div>
+          <div className="masterBallFrame" onClick={togglePokemonColor}>
+            <div className="monsterBallButton">色ちがい</div>
           </div>
         </div>
       </div>

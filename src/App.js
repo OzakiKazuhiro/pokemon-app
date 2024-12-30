@@ -6,38 +6,19 @@ import Navbar from "./components/Navbar/Navbar";
 import {
   fetchPokemonByUrl,
   fetchPokemonList,
-  searchPokemon,
-  setSearchTerm,
 } from "./store/slices/pokemonSlice";
 import { POKEMON_GENERATIONS } from "./constants/pokemonGenerations";
 
 function App() {
   const dispatch = useDispatch();
-  const {
-    loading,
-    pokemonData,
-    nextURL,
-    prevURL,
-    searchTerm,
-    pokemonList,
-    error,
-  } = useSelector((state) => state.pokemon);
+  const { loading, pokemonData, nextURL, prevURL, error } = useSelector(
+    (state) => state.pokemon
+  );
 
   useEffect(() => {
     dispatch(fetchPokemonByUrl(POKEMON_GENERATIONS.INITIAL));
     dispatch(fetchPokemonList());
   }, [dispatch]);
-
-  const handleSearch = () => {
-    if (!searchTerm) return;
-    dispatch(searchPokemon({ searchTerm, pokemonList }));
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      handleSearch();
-    }
-  };
 
   const handleGeneration = (url) => {
     dispatch(fetchPokemonByUrl(url));
@@ -47,20 +28,6 @@ function App() {
     <>
       <Navbar />
       <div className="App">
-        <div className="searchContainer">
-          <input
-            type="text"
-            value={searchTerm}
-            onChange={(e) => dispatch(setSearchTerm(e.target.value))}
-            onKeyDown={handleKeyDown}
-            placeholder="ポケモンの名前を入力"
-            className="searchInput"
-          />
-          <button onClick={handleSearch} className="searchButton">
-            検索
-          </button>
-        </div>
-
         {error && <div className="error">{error}</div>}
 
         {loading ? (
@@ -92,22 +59,22 @@ function App() {
           <button
             onClick={() => handleGeneration(POKEMON_GENERATIONS.GOLD_SILVER)}
           >
-            金・銀
+            金銀
           </button>
           <button
             onClick={() => handleGeneration(POKEMON_GENERATIONS.RUBY_SAPPHIRE)}
           >
-            ルビ・サファ
+            ルビサファ
           </button>
           <button
             onClick={() => handleGeneration(POKEMON_GENERATIONS.DIAMOND_PEARL)}
           >
-            ダイ・パ
+            ダイパ
           </button>
           <button
             onClick={() => handleGeneration(POKEMON_GENERATIONS.BLACK_WHITE)}
           >
-            黒・白
+            黒白
           </button>
           <button onClick={() => handleGeneration(POKEMON_GENERATIONS.XY)}>
             X・Y
@@ -115,12 +82,12 @@ function App() {
           <button
             onClick={() => handleGeneration(POKEMON_GENERATIONS.SUN_MOON)}
           >
-            サン・ムーン
+            サンムーン
           </button>
           <button
             onClick={() => handleGeneration(POKEMON_GENERATIONS.SWORD_SHIELD)}
           >
-            剣・盾
+            剣盾
           </button>
           <button onClick={() => handleGeneration(POKEMON_GENERATIONS.ARCEUS)}>
             アルセウス
@@ -128,7 +95,7 @@ function App() {
           <button
             onClick={() => handleGeneration(POKEMON_GENERATIONS.SCARLET_VIOLET)}
           >
-            スカーレット・バイオレット
+            スカー・バイオ
           </button>
         </div>
       </div>

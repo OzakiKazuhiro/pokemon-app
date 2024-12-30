@@ -1,57 +1,47 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./Navbar.css";
 import monsterBall from "./monsterBall.png"; // 画像を変数としてインポート
-import { getURLtoJson, getPokemon } from "../../utils/pokemon";
+import {
+  searchPokemon,
+  setSearchTerm,
+  fetchPokemonByUrl,
+} from "../../store/slices/pokemonSlice";
+import { POKEMON_GENERATIONS } from "../../constants/pokemonGenerations";
 
 const Navbar = () => {
-  const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [nextURL, setNextURL] = useState("");
-  const [prevURL, setPrevURL] = useState("");
-  const [pokemonList, setPokemonList] = useState([]); // JSONデータを保持するstate
+  const dispatch = useDispatch();
+  const { searchTerm, pokemonList } = useSelector((state) => state.pokemon);
 
-  // 検索機能の実装
-  const handleSearch = async () => {
+  const handleSearch = () => {
     if (!searchTerm) return;
-
-    setLoading(true);
-    // JSONデータから該当するポケモンを検索
-    const foundPokemon = pokemonList.find(
-      (pokemon) =>
-        pokemon.pokeapi_species_name_ja === searchTerm ||
-        pokemon.yakkuncom_name === searchTerm
-    );
-
-    if (foundPokemon) {
-      const offset = foundPokemon.pokeapi_id - 1;
-      const searchURL = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=1`;
-
-      let data = await getURLtoJson(searchURL);
-      await getPokemon(data.results);
-      setNextURL(data.next);
-      setPrevURL(data.previous);
-    }
-    setLoading(false);
+    dispatch(searchPokemon({ searchTerm, pokemonList }));
   };
 
   const handleKeyDown = (e) => {
-    // Enterキーが押されたとき（キーコード13）に検索を実行
     if (e.key === "Enter") {
       handleSearch();
     }
   };
 
+  const handleGeneration = (generation) => {
+    dispatch(fetchPokemonByUrl(generation));
+  };
+
   return (
-    <>
-      <nav>
+    <nav className="navbar">
+      <div className="navbar-brand">
         <img className="monsterBall" src={monsterBall} alt="モンスターボール" />
-        ポケモン図鑑
+        <h1 className="navbar-title">ポケモン図鑑</h1>
         <img className="monsterBall" src={monsterBall} alt="モンスターボール" />
+      </div>
+
+      <div className="search-section">
         <div className="searchContainer">
           <input
             type="text"
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={(e) => dispatch(setSearchTerm(e.target.value))}
             onKeyDown={handleKeyDown}
             placeholder="ポケモンの名前を入力"
             className="searchInput"
@@ -60,8 +50,50 @@ const Navbar = () => {
             検索
           </button>
         </div>
-      </nav>
-    </>
+      </div>
+
+      <div className="generation-buttons">
+        <button
+          onClick={() => handleGeneration(POKEMON_GENERATIONS.GOLD_SILVER)}
+        >
+          金銀
+        </button>
+        <button
+          onClick={() => handleGeneration(POKEMON_GENERATIONS.RUBY_SAPPHIRE)}
+        >
+          ルビサファ
+        </button>
+        <button
+          onClick={() => handleGeneration(POKEMON_GENERATIONS.DIAMOND_PEARL)}
+        >
+          ダイパ
+        </button>
+        <button
+          onClick={() => handleGeneration(POKEMON_GENERATIONS.BLACK_WHITE)}
+        >
+          黒白
+        </button>
+        <button onClick={() => handleGeneration(POKEMON_GENERATIONS.XY)}>
+          X・Y
+        </button>
+        <button onClick={() => handleGeneration(POKEMON_GENERATIONS.SUN_MOON)}>
+          サンムーン
+        </button>
+        <button
+          onClick={() => handleGeneration(POKEMON_GENERATIONS.SWORD_SHIELD)}
+        >
+          剣盾
+        </button>
+        <button onClick={() => handleGeneration(POKEMON_GENERATIONS.ARCEUS)}>
+          アルセウス
+        </button>
+        <button
+          onClick={() => handleGeneration(POKEMON_GENERATIONS.SCARLET_VIOLET)}
+        >
+          スカー・バイオ
+        </button>
+      </div>
+    </nav>
   );
 };
 
