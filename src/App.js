@@ -78,6 +78,13 @@ function App() {
     setLoading(false);
   };
 
+  const handleKeyDown = (e) => {
+    // Enterキーが押されたとき（キーコード13）に検索を実行
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
+
   const handleNextPage = async () => {
     setLoading(true);
     let data = await getURLtoJson(nextURL);
@@ -227,6 +234,7 @@ function App() {
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyDown={handleKeyDown}
             placeholder="ポケモンの名前を入力"
             className="searchInput"
           />
