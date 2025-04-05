@@ -8,6 +8,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
+    # シンレンタルサーバーへの自動デプロイ用ワークフロー
     steps:
       - name: リポジトリのチェックアウト
         uses: actions/checkout@v3
