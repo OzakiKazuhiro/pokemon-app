@@ -1,0 +1,35 @@
+name: 自動デプロイ - シンレンタルサーバー
+
+on:
+  push:
+    branches: [main] # メインブランチにプッシュされたときに実行
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: リポジトリのチェックアウト
+        uses: actions/checkout@v3
+
+      - name: Node.jsのセットアップ
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18" # 適切なNodeバージョンを指定
+          cache: "npm"
+
+      - name: 依存関係のインストール
+        run: npm ci
+
+      - name: ビルド実行
+        run: npm run build
+
+      - name: FTPデプロイ
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./build/ # Reactビルド出力ディレクトリ
+          server-dir: ${{ secrets.FTP_DEPLOY_DIR }}/
+          dangerous-clean-slate: true # デプロイ先を最初にクリアする（オプション）
