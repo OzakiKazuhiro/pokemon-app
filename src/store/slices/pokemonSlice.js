@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getURLtoJson, getPokemon } from "../../utils/pokemon";
-import { POKEMON_GENERATIONS } from "../../constants/pokemonGenerations";
 
 // 非同期アクション
 export const fetchPokemonByUrl = createAsyncThunk(

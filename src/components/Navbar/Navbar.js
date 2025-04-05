@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Navbar.css";
 import monsterBall from "./monsterBall.png"; // 画像を変数としてインポート

@@ -40,16 +40,16 @@ const Card = ({ pokemon }) => {
       setPokemonHeight(pokemonJaHeight);
     };
 
-    const changeJaType = async () => {
-      const pokemonJaHeight = pokemon.height / 10;
-      setPokemonHeight(pokemonJaHeight);
-    };
-
     fetchJapaneseName();
     fetchPokemonCry();
     changeJaWeight();
     changeJaHeight();
-  }, [pokemon.species.url]); // URL が変更されたときに再実行
+  }, [
+    pokemon.species.url,
+    pokemon.cries.latest,
+    pokemon.weight,
+    pokemon.height,
+  ]); // 依存配列に必要な値を追加
 
   const togglePokemonImage = () => {
     setIsFront(!isFront);
@@ -112,6 +112,7 @@ const Card = ({ pokemon }) => {
               isFront ? pokemon.sprites.front_shiny : pokemon.sprites.back_shiny
             }
             onClick={togglePokemonImage}
+            alt={`${japaneseName}（色違い）`}
           />
         ) : (
           <img
@@ -121,6 +122,7 @@ const Card = ({ pokemon }) => {
                 : pokemon.sprites.back_default
             }
             onClick={togglePokemonImage}
+            alt={japaneseName}
           />
         )}
       </div>
