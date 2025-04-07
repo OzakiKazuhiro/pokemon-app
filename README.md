@@ -1,70 +1,79 @@
-# Getting Started with Create React App
+# ポケモン図鑑アプリ
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![ポケモン図鑑](public/logo192.png)
 
-## Available Scripts
+## 概要
 
-In the project directory, you can run:
+このプロジェクトは、React と Redux を使用して作成したポケモン図鑑アプリケーションです。PokeAPI を使用してポケモンのデータを取得し、日本語で表示するインタラクティブな図鑑を提供します。
 
-### `npm start`
+## 主な機能
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **世代別ポケモン表示**: 第 2 世代から第 9 世代までのポケモンを世代別に表示
+- **ポケモン検索**: 日本語名での検索機能
+- **インタラクティブなカード表示**:
+  - ポケモンの表裏切り替え
+  - 色違い表示
+  - 鳴き声再生
+  - 日本語でのタイプ表示
+  - 身長・体重の表示
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 技術スタック
 
-### `npm test`
+- **フロントエンド**: React 18
+- **状態管理**: Redux Toolkit
+- **API**: PokeAPI
+- **デプロイ**: GitHub Actions + FTP
+- **スタイリング**: CSS
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## アピールポイント
 
-### `npm run build`
+1. **モダンな技術スタック**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   - React 18 の最新機能を活用
+   - Redux Toolkit による効率的な状態管理
+   - コンポーネントベースのアーキテクチャ
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. **ユーザーエクスペリエンス**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   - 直感的な UI/UX デザイン
+   - インタラクティブな機能（画像切り替え、鳴き声再生など）
+   - レスポンシブデザイン
 
-### `npm run eject`
+3. **開発プロセス**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   - ESLint によるコード品質管理
+   - GitHub Actions を使用した自動デプロイ
+   - コンポーネントの再利用性を考慮した設計
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. **パフォーマンス最適化**
+   - 効率的な API 呼び出し
+   - 適切な状態管理による再レンダリングの最適化
+   - 画像の遅延読み込み
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## インストールと実行
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+# 依存関係のインストール
+npm install
 
-## Learn More
+# 開発サーバーの起動
+npm start
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# ビルド
+npm run build
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## デプロイメント
 
-### Code Splitting
+このアプリケーションは GitHub Actions を使用して自動デプロイされています。main ブランチへのプッシュ時に自動的にビルドとデプロイが実行されます。
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 今後の改善点
 
-### Analyzing the Bundle Size
+- ポケモンの詳細情報の追加
+- 進化系統の表示
+- モバイル対応の強化
+- パフォーマンスのさらなる最適化
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## ライセンス
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+このプロジェクトは MIT ライセンスの下で公開されています。
